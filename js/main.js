@@ -4,5 +4,6 @@ var app = new Vue({
   data: {
     product: 'Socks',
     description: 'A pair of warm, fuzzy socks',
+    image: './assets/socks.jpeg',
   },
 })
