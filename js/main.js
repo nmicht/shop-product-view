@@ -9,5 +9,10 @@ var app = new Vue({
     inStock: true,
     inventory: 100,
     onSale: true,
+    details: [
+      '80% cotton',
+      '20% polyester',
+      'Gender-natural',
+    ],
   },
 })
