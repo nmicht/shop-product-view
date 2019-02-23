@@ -24,5 +24,10 @@ var app = new Vue({
         color: 'blue',
       },
     ],
+    sizes: [
+      'small',
+      'medium',
+      'large',
+    ],
   },
 })

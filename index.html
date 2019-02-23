@@ -25,9 +25,15 @@
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
 
+          <p>Variants</p>
           <div v-for="variant in variants" :key="variant.id">
             {{ variant.color }}
           </div>
+
+          <p>Sizes</p>
+          <ul>
+            <li v-for="size in sizes">{{ size }}</li>
+          </ul>
           <a :href="link">More products</a>
         </div>
       </div>
