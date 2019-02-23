@@ -44,7 +44,12 @@ Vue.component('product', {
       </button>
       <button @click="removeFromCart">Remove from cart</button>
 
-      <product-review></product-review>
+      <p>Reviews</p>
+      <p v-if="!reviews.length">There are no reviews.</p>
+      <ul>
+        <li v-for="review in reviews">{{ review.rating }} - {{ review.name + ': ' }}{{ review.review }}</li>
+      </ul>
+      <product-review-form @review-submitted="addReview"></product-review-form>
     </div>
   `,
   data() {
@@ -80,20 +85,22 @@ Vue.component('product', {
         'medium',
         'large',
       ],
-    };
+      reviews: [],
+    }
   },
   methods: {
     addToCart() {
-      // this.cart += 1;
       this.$emit('add-to-cart', this.variants[this.selectedVariant].id)
     },
     removeFromCart() {
-      // this.cart = this.cart >= 1 ? this.cart -= 1 : 0;
       this.$emit('remove-from-cart', this.variants[this.selectedVariant].id)
     },
     updateProduct(index) {
       this.selectedVariant = index;
     },
+    addReview(productReview) {
+      this.reviews.push(productReview)
+    }
   },
   computed: {
     title() {
@@ -128,9 +135,9 @@ Vue.component('product-details', {
   `,
 });
 
-Vue.component('product-review', {
+Vue.component('product-review-form', {
   template: `
-    <form>
+    <form @submit.prevent="onSubmit">
       <label for="name">Name</label>
       <input v-model="name" type="text" name="name" placeholder="Who are you?">
 
@@ -163,10 +170,12 @@ Vue.component('product-review', {
         review: this.review,
         rating: this.rating,
       }
+      this.$emit('review-submitted', productReview);
       this.name = null;
       this.review = null;
       this.rating = 5;
     }
+
   }
 });
 
