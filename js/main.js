@@ -19,9 +19,7 @@ Vue.component('product', {
         <p v-else>Out of Stock</p>
         <p>Shipping: {{ shipping }}</p>
         <p>{{ description }}</p>
-        <ul>
-          <li v-for="detail in details">{{ detail }}</li>
-        </ul>
+        <product-details :details="details"></product-details>
 
         <p>Variants</p>
         <div v-for="(variant, index) in variants"
@@ -117,6 +115,19 @@ Vue.component('product', {
   }
 })
 
+Vue.component('product-details', {
+  props: {
+    details: {
+      type: Array,
+      required: true,
+    },
+  },
+  template: `
+    <ul>
+      <li v-for="detail in details">{{ detail }}</li>
+    </ul>
+  `,
+})
 var app = new Vue({
   el: '#app', // The id to use on the html
   data: {
