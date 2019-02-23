@@ -18,10 +18,12 @@ var app = new Vue({
       {
         id: 2234,
         color: 'green',
+        image: './assets/socks.jpeg',
       },
       {
         id: 2235,
         color: 'blue',
+        image: './assets/socks-blue.jpeg',
       },
     ],
     sizes: [
@@ -32,8 +34,11 @@ var app = new Vue({
     cart: 0,
   },
   methods: {
-    addToCart: function () {
+    addToCart() {
       this.cart += 1;
-    }
-  }
+    },
+    updateProduct(image) {
+      this.image = image;
+    },
+  },
 })
