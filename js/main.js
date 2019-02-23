@@ -7,5 +7,7 @@ var app = new Vue({
     image: './assets/socks.jpeg',
     link: '/more-products.html',
     inStock: true,
+    inventory: 100,
+    onSale: true,
   },
 })
