@@ -6,10 +6,9 @@ var app = new Vue({
     product: 'Socks',
     description: 'A pair of warm, fuzzy socks',
     selectedVariant: 0,
-    link: '/more-products.html',
-    inStock: true,
     inventory: 100,
     onSale: true,
+    link: '/more-products.html',
     details: [
       '80% cotton',
       '20% polyester',
@@ -20,11 +19,13 @@ var app = new Vue({
         id: 2234,
         color: 'green',
         image: './assets/socks.jpeg',
+        quantity: 10,
       },
       {
         id: 2235,
         color: 'blue',
         image: './assets/socks-blue.jpeg',
+        quantity: 0,
       },
     ],
     sizes: [
@@ -51,6 +52,9 @@ var app = new Vue({
     },
     image() {
       return this.variants[this.selectedVariant].image
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].quantity
     }
   }
 })
