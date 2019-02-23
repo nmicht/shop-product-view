@@ -43,6 +43,8 @@ Vue.component('product', {
         Add to cart
       </button>
       <button @click="removeFromCart">Remove from cart</button>
+
+      <product-review></product-review>
     </div>
   `,
   data() {
@@ -124,7 +126,50 @@ Vue.component('product-details', {
       <li v-for="detail in details">{{ detail }}</li>
     </ul>
   `,
-})
+});
+
+Vue.component('product-review', {
+  template: `
+    <form>
+      <label for="name">Name</label>
+      <input v-model="name" type="text" name="name" placeholder="Who are you?">
+
+      <label for="review">Review</label>
+      <textarea v-model="review" name="review" placeholder="What do you think about this product? Do you like? Will you recommend it?"></textarea>
+
+      <label for="rating">Rating</label>
+      <select v-model.number="rating" name="rating">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select>
+
+      <button type="submit">Submit</button>
+    </form>
+  `,
+  data() {
+    return {
+      name: null,
+      review: null,
+      rating: 5,
+    }
+  },
+  methods: {
+    onSubmit() {
+      let productReview = {
+        name: this.name,
+        review: this.review,
+        rating: this.rating,
+      }
+      this.name = null;
+      this.review = null;
+      this.rating = 5;
+    }
+  }
+});
+
 var app = new Vue({
   el: '#app', // The id to use on the html
   data: {
