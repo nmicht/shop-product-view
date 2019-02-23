@@ -26,8 +26,12 @@
           </ul>
 
           <p>Variants</p>
-          <div v-for="variant in variants" :key="variant.id">
-            <p @mouseover="updateProduct(variant.image)">{{ variant.color }}</p>
+          <div v-for="variant in variants"
+               :key="variant.id"
+               class="color-box"
+               :style="{ backgroundColor: variant.color }"
+               @mouseover="updateProduct(variant.image)"
+               :aria-label="variant.color" >
           </div>
 
           <p>Sizes</p>
@@ -37,7 +41,11 @@
           <a :href="link">More products</a>
         </div>
 
-        <button @click="addToCart">Add to cart</button>
+        <button @click="addToCart"
+                :disabled="!inStock"
+                :class="{ disabledButton: !inStock}" >
+          Add to cart
+        </button>
         <button @click="removeFromCart" v-show="cart">Remove from cart</button>
 
         <div class="cart">
