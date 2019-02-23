@@ -14,5 +14,15 @@ var app = new Vue({
       '20% polyester',
       'Gender-natural',
     ],
+    variants: [
+      {
+        id: 2234,
+        color: 'green',
+      },
+      {
+        id: 2235,
+        color: 'blue',
+      },
+    ],
   },
 })
