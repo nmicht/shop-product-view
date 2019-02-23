@@ -1,48 +1,55 @@
 // var product = 'Socks';
 Vue.component('product', {
+  props: {
+    premium: {
+      type: Boolean,
+      required: true,
+    },
+  },
   template: `
-  <div class="product">
-  <div class="product-image">
-  <img :src="image" :alt="product">
-  </div>
+    <div class="product">
+      <div class="product-image">
+        <img :src="image" :alt="product">
+      </div>
 
-  <div class="product-info">
-  <h1>{{ title }}</h1>
-  <p v-show="onSale">On Sale!</p>
-  <p v-if="inStock">In Stock</p>
-  <p v-else>Out of Stock</p>
-  <p>{{ description }}</p>
-  <ul>
-  <li v-for="detail in details">{{ detail }}</li>
-  </ul>
+      <div class="product-info">
+        <h1>{{ title }}</h1>
+        <p v-show="onSale">On Sale!</p>
+        <p v-if="inStock">In Stock</p>
+        <p v-else>Out of Stock</p>
+        <p>Shipping: {{ shipping }}</p>
+        <p>{{ description }}</p>
+        <ul>
+          <li v-for="detail in details">{{ detail }}</li>
+        </ul>
 
-  <p>Variants</p>
-  <div v-for="(variant, index) in variants"
-  :key="variant.id"
-  class="color-box"
-  :style="{ backgroundColor: variant.color }"
-  @mouseover="updateProduct(index)"
-  :aria-label="variant.color" >
-  </div>
+        <p>Variants</p>
+        <div v-for="(variant, index) in variants"
+            :key="variant.id"
+            class="color-box"
+            :style="{ backgroundColor: variant.color }"
+            @mouseover="updateProduct(index)"
+            :aria-label="variant.color" >
+        </div>
 
-  <p>Sizes</p>
-  <ul>
-  <li v-for="size in sizes">{{ size }}</li>
-  </ul>
-  <a :href="link">More products</a>
-  </div>
+        <p>Sizes</p>
+        <ul>
+          <li v-for="size in sizes">{{ size }}</li>
+        </ul>
+        <a :href="link">More products</a>
+      </div>
 
-  <button @click="addToCart"
-  :disabled="!inStock"
-  :class="{ disabledButton: !inStock}" >
-  Add to cart
-  </button>
-  <button @click="removeFromCart" v-show="cart">Remove from cart</button>
+      <button @click="addToCart"
+            :disabled="!inStock"
+            :class="{ disabledButton: !inStock}" >
+        Add to cart
+      </button>
+      <button @click="removeFromCart" v-show="cart">Remove from cart</button>
 
-  <div class="cart">
-  <p>Cart({{cart}})</p>
-  </div>
-  </div>
+      <div class="cart">
+        <p>Cart({{cart}})</p>
+      </div>
+    </div>
   `,
   data() {
     return {
@@ -100,10 +107,19 @@ Vue.component('product', {
     },
     inStock() {
       return this.variants[this.selectedVariant].quantity
-    }
+    },
+    shipping() {
+      if (this.premium) {
+        return 'Free';
+      }
+      return 2.99
+    },
   }
 })
 
 var app = new Vue({
   el: '#app', // The id to use on the html
+  data: {
+    premium: true,
+  }
 })
