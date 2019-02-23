@@ -5,7 +5,7 @@ var app = new Vue({
     brand: 'Michelle',
     product: 'Socks',
     description: 'A pair of warm, fuzzy socks',
-    image: './assets/socks.jpeg',
+    selectedVariant: 0,
     link: '/more-products.html',
     inStock: true,
     inventory: 100,
@@ -41,13 +41,16 @@ var app = new Vue({
     removeFromCart() {
       this.cart = this.cart >= 1 ? this.cart -= 1 : 0;
     },
-    updateProduct(image) {
-      this.image = image;
+    updateProduct(index) {
+      this.selectedVariant = index;
     },
   },
   computed: {
     title() {
       return `${this.brand} ${this.product}`;
+    },
+    image() {
+      return this.variants[this.selectedVariant].image
     }
   }
 })

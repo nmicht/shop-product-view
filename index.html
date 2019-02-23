@@ -26,11 +26,11 @@
           </ul>
 
           <p>Variants</p>
-          <div v-for="variant in variants"
+          <div v-for="(variant, index) in variants"
                :key="variant.id"
                class="color-box"
                :style="{ backgroundColor: variant.color }"
-               @mouseover="updateProduct(variant.image)"
+               @mouseover="updateProduct(index)"
                :aria-label="variant.color" >
           </div>
 
