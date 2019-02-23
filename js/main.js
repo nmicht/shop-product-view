@@ -2,6 +2,7 @@
 var app = new Vue({
   el: '#app', // The id to use on the html
   data: {
+    brand: 'Michelle',
     product: 'Socks',
     description: 'A pair of warm, fuzzy socks',
     image: './assets/socks.jpeg',
@@ -44,4 +45,9 @@ var app = new Vue({
       this.image = image;
     },
   },
+  computed: {
+    title() {
+      return `${this.brand} ${this.product}`;
+    }
+  }
 })
