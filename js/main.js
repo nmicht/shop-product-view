@@ -2,6 +2,7 @@
 var app = new Vue({
   el: '#app', // The id to use on the html
   data: {
-    product: 'Socks'
+    product: 'Socks',
+    description: 'A pair of warm, fuzzy socks',
   },
 })
