@@ -37,6 +37,9 @@ var app = new Vue({
     addToCart() {
       this.cart += 1;
     },
+    removeFromCart() {
+      this.cart = this.cart >= 1 ? this.cart -= 1 : 0;
+    },
     updateProduct(image) {
       this.image = image;
     },
